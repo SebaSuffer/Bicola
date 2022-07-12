@@ -15,6 +15,8 @@ void EliminarAlInicio(Bicola * bicola);
 
 void EliminarAlFinal(Bicola * bicola);
 
+void MostrarBicola(Bicola * bicola);
+
 size_t convertirNum(char *string);
 
 bool esNumero(char *caracter);
@@ -32,8 +34,9 @@ int main() {
         printf("1.-  Insertar Elemento al Inicio\n");
         printf("2.-  Insertar Elemento al Final\n");
         printf("3.-  Eliminar Elemento del Inicio\n");
-        printf("4.-  Eliminar Elemento del Final\n");  
-        printf("5.- EXIT\n");
+        printf("4.-  Eliminar Elemento del Final\n"); 
+        printf("5.-  Mostrar Bicola\n");   
+        printf("6.-  EXIT\n");
 
         printf("\nINGRESE SU OPCION: ");
 
@@ -60,10 +63,14 @@ int main() {
             case 4: 
                 EliminarAlFinal(bicola);
                 break;
+            case 5:
+                MostrarBicola(bicola);
+                break;
+            case 6:  
                 return EXIT_SUCCESS;
         }
-    return 0;
     }
+    return 0;
 }
 
 void InsertarAlInicio(Bicola * bicola){
@@ -85,12 +92,41 @@ void InsertarAlFinal(Bicola * bicola){
 void EliminarAlInicio(Bicola * bicola){
     system("cls");
     int * numero = ((int *)eliminarIzq(bicola));
-    printf("El numero eliminado es: %i", *numero);
+    if(numero == NULL){
+        printf("No hay numeros en la bicola\n");
+        system("pause");
+        return;
+    }
+    printf("El numero eliminado es: %i\n", *numero);
+    system("pause");
 }
 void EliminarAlFinal(Bicola * bicola){
     system("cls");
     int * numero = ((int *)eliminarDer(bicola));
-    printf("El numero eliminado es: %i", *numero);
+    if(numero == NULL){
+        printf("No hay numeros en la bicola\n");
+        system("pause");
+        return;
+    }
+    printf("El numero eliminado es: %i\n", *numero);
+    system("pause");
+}
+
+void MostrarBicola(Bicola * bicola){
+    system("cls");
+    int * numero = ((int *)eliminarIzq(bicola)); 
+    if(numero == NULL){
+        printf("No hay numeros en la bicola\n");
+        system("pause");
+        return;
+    }
+    printf("Bicola: ");
+    while(numero != NULL){
+        printf("%i ", *numero);
+        numero = ((int *)eliminarIzq(bicola));
+    }
+    printf("\n");
+    system("pause");
 }
 
 size_t convertirNum(char *string) {
