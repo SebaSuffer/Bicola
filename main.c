@@ -1,9 +1,24 @@
 #include <stdio.h>
 #include <stdbool.h>
+#include <ctype.h>
+#include <string.h>
 #include <Windows.h>
 #include "bicola.h"
 
 void InsertarAlInicio(Bicola * bicola);
+
+void InsertarAlInicio(Bicola * bicola);
+
+void InsertarAlFinal(Bicola * bicola);
+
+void EliminarAlInicio(Bicola * bicola);
+
+void EliminarAlFinal(Bicola * bicola);
+
+size_t convertirNum(char *string);
+
+bool esNumero(char *caracter);
+
 
 int main() {
     system("color 0d");
@@ -78,3 +93,25 @@ void EliminarAlFinal(Bicola * bicola){
     printf("El numero eliminado es: %i", *numero);
 }
 
+size_t convertirNum(char *string) {
+    size_t cont;
+    size_t num = 0;
+
+    for (cont = 0; cont < strlen(string); cont++) {
+        num = (num * 10) + (string[cont] - '0');
+    }
+    
+    return num;
+}
+
+bool esNumero(char *caracter) {
+    int cont;
+    if( !strcmp(caracter, "0") ) return false;
+    for (cont = 0; cont < strlen(caracter); cont++) {
+        if (isdigit(caracter[cont]) != true) {
+            return false;
+        }
+    }
+
+    return true;
+}
